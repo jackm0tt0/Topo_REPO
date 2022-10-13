@@ -10,10 +10,12 @@ using System.ComponentModel;
 using System.Drawing.Printing;
 using System.Drawing.Text;
 using System.Linq.Expressions;
+using Eto.Forms;
+using Eto.Drawing;
 
 namespace TopoRhinoPlugin
 {
-    public class TopoRhinoCommand : Command
+    public class TopoRhinoCommand : Rhino.Commands.Command
     {
         public TopoRhinoCommand()
         {
@@ -33,46 +35,56 @@ namespace TopoRhinoPlugin
             // TODO: start here modifying the behaviour of your command.
             // ---
 
+            // this method will show my pluggin window
+            Form window = new Form();
+            Eto.Forms.StackLayout vstack = new Eto.Forms.StackLayout();
+            Eto.Forms.Button b1 = new Eto.Forms.Button();
+            b1.Text = "click me";
+            vstack.Items.Add(b1);
+            window.Content = vstack;
+            window.Show();
+
+
             
-            using (GetObject get_obj = new GetObject())
-            {
-                Rhino.Geometry.GeometryBase element;
-                get_obj.SetCommandPrompt("Select An Element");
-                get_obj.SubObjectSelect = true;
-                if (get_obj.Get() != GetResult.Object)
-                {
-                    RhinoApp.WriteLine("You forgot to select an object");
-                    return get_obj.CommandResult();
-                }
-                Rhino.DocObjects.RhinoObject parent = get_obj.Object(0).Object();
-                Type ptype = parent.GetType();
+            //using (GetObject get_obj = new GetObject())
+            //{
+            //    Rhino.Geometry.GeometryBase element;
+            //    get_obj.SetCommandPrompt("Select An Element");
+            //    get_obj.SubObjectSelect = true;
+            //    if (get_obj.Get() != GetResult.Object)
+            //    {
+            //        RhinoApp.WriteLine("You forgot to select an object");
+            //        return get_obj.CommandResult();
+            //    }
+            //    Rhino.DocObjects.RhinoObject parent = get_obj.Object(0).Object();
+            //    Type ptype = parent.GetType();
 
-                if (ptype == typeof(Rhino.DocObjects.BrepObject))
-                {
-                    RhinoApp.WriteLine("its a brep");
-                    element = get_obj.Object(0).Surface();
-                }
-                else if (ptype == typeof(Rhino.DocObjects.CurveObject))
-                {
-                    RhinoApp.WriteLine("its a curve");
-                    element = null;
-                }
-                else if (ptype == typeof(Rhino.DocObjects.PointObject))
-                {
-                    RhinoApp.WriteLine("its a point");
-                    element = null;
-                }
-                else
-                {
-                    element = null;
-                }
+            //    if (ptype == typeof(Rhino.DocObjects.BrepObject))
+            //    {
+            //        RhinoApp.WriteLine("its a brep");
+            //        element = get_obj.Object(0).Surface();
+            //    }
+            //    else if (ptype == typeof(Rhino.DocObjects.CurveObject))
+            //    {
+            //        RhinoApp.WriteLine("its a curve");
+            //        element = null;
+            //    }
+            //    else if (ptype == typeof(Rhino.DocObjects.PointObject))
+            //    {
+            //        RhinoApp.WriteLine("its a point");
+            //        element = null;
+            //    }
+            //    else
+            //    {
+            //        element = null;
+            //    }
 
-                RhinoApp.WriteLine(element.ToString());
-                RhinoApp.WriteLine(element.GetType().ToString());
+            //    RhinoApp.WriteLine(element.ToString());
+            //    RhinoApp.WriteLine(element.GetType().ToString());
 
-                RhinoApp.WriteLine(parent.ToString());
-                RhinoApp.WriteLine(parent.GetType().ToString());
-            }
+            //    RhinoApp.WriteLine(parent.ToString());
+            //    RhinoApp.WriteLine(parent.GetType().ToString());
+            //}
 
             //Point3d pt0;
             //using (GetPoint getPointAction = new GetPoint())
