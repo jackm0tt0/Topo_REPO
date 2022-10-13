@@ -1,0 +1,9 @@
+C:\Users\jackm\Documents\Cornell 22-23\Fall\Studio\Topo_REPO\TopoRhinoPlugin\TopoRhinoPlugin\bin\Debug\net48\TopoRhinoPlugin.rhp
+C:\Users\jackm\Documents\Cornell 22-23\Fall\Studio\Topo_REPO\TopoRhinoPlugin\TopoRhinoPlugin\bin\Debug\net48\TopoRhinoPlugin.pdb
+C:\Users\jackm\Documents\Cornell 22-23\Fall\Studio\Topo_REPO\TopoRhinoPlugin\TopoRhinoPlugin\obj\Debug\net48\TopoRhinoPlugin.csproj.AssemblyReference.cache
+C:\Users\jackm\Documents\Cornell 22-23\Fall\Studio\Topo_REPO\TopoRhinoPlugin\TopoRhinoPlugin\obj\Debug\net48\TopoRhinoPlugin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jackm\Documents\Cornell 22-23\Fall\Studio\Topo_REPO\TopoRhinoPlugin\TopoRhinoPlugin\obj\Debug\net48\TopoRhinoPlugin.AssemblyInfoInputs.cache
+C:\Users\jackm\Documents\Cornell 22-23\Fall\Studio\Topo_REPO\TopoRhinoPlugin\TopoRhinoPlugin\obj\Debug\net48\TopoRhinoPlugin.AssemblyInfo.cs
+C:\Users\jackm\Documents\Cornell 22-23\Fall\Studio\Topo_REPO\TopoRhinoPlugin\TopoRhinoPlugin\obj\Debug\net48\TopoRhinoPlugin.csproj.CoreCompileInputs.cache
+C:\Users\jackm\Documents\Cornell 22-23\Fall\Studio\Topo_REPO\TopoRhinoPlugin\TopoRhinoPlugin\obj\Debug\net48\TopoRhinoPlugin.rhp
+C:\Users\jackm\Documents\Cornell 22-23\Fall\Studio\Topo_REPO\TopoRhinoPlugin\TopoRhinoPlugin\obj\Debug\net48\TopoRhinoPlugin.pdb
