@@ -16,6 +16,7 @@ namespace TopoRhinoPlugin
         public TopoRhinoPlugin()
         {
             Instance = this;
+            this.topowindow = new TopoWindow();
         }
 
         ///<summary>Gets the only instance of the TopoRhinoPlugin plug-in.</summary>
@@ -24,5 +25,13 @@ namespace TopoRhinoPlugin
         // You can override methods here to change the plug-in behavior on
         // loading and shut down, add options pages to the Rhino _Option command
         // and maintain plug-in wide options in a document.
+
+        private TopoWindow _topowindow;
+
+        public TopoWindow topowindow
+        {
+            get { return _topowindow; }
+            set { _topowindow = value; }
+        }
     }
 }

@@ -13,6 +13,7 @@ using System.Linq.Expressions;
 using Eto.Forms;
 using Eto.Drawing;
 
+
 namespace TopoRhinoPlugin
 {
     public class TopoRhinoCommand : Rhino.Commands.Command
@@ -36,14 +37,8 @@ namespace TopoRhinoPlugin
             // ---
 
             // this method will show my pluggin window
-            Form window = new Form();
-            Eto.Forms.StackLayout vstack = new Eto.Forms.StackLayout();
-            Eto.Forms.Button b1 = new Eto.Forms.Button();
-            b1.Text = "click me";
-            vstack.Items.Add(b1);
-            window.Content = vstack;
-            window.Show();
 
+            TopoRhinoPlugin.Instance.topowindow.toggle();
 
             
             //using (GetObject get_obj = new GetObject())
