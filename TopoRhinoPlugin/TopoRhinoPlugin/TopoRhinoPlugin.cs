@@ -17,6 +17,7 @@ namespace TopoRhinoPlugin
         {
             Instance = this;
             this.topowindow = new TopoWindow();
+            
         }
 
         ///<summary>Gets the only instance of the TopoRhinoPlugin plug-in.</summary>

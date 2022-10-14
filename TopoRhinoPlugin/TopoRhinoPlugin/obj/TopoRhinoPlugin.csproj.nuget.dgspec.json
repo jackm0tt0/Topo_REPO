@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jackm\\Documents\\Cornell 22-23\\Fall\\Studio\\Topo_REPO\\TopoRhinoPlugin\\TopoRhinoPlugin\\TopoRhinoPlugin.csproj": {}
+    "C:\\Users\\LabUser\\Documents\\jmo97\\Topo_REPO\\TopoRhinoPlugin\\TopoRhinoPlugin\\TopoRhinoPlugin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jackm\\Documents\\Cornell 22-23\\Fall\\Studio\\Topo_REPO\\TopoRhinoPlugin\\TopoRhinoPlugin\\TopoRhinoPlugin.csproj": {
+    "C:\\Users\\LabUser\\Documents\\jmo97\\Topo_REPO\\TopoRhinoPlugin\\TopoRhinoPlugin\\TopoRhinoPlugin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jackm\\Documents\\Cornell 22-23\\Fall\\Studio\\Topo_REPO\\TopoRhinoPlugin\\TopoRhinoPlugin\\TopoRhinoPlugin.csproj",
+        "projectUniqueName": "C:\\Users\\LabUser\\Documents\\jmo97\\Topo_REPO\\TopoRhinoPlugin\\TopoRhinoPlugin\\TopoRhinoPlugin.csproj",
         "projectName": "TopoRhinoPlugin",
-        "projectPath": "C:\\Users\\jackm\\Documents\\Cornell 22-23\\Fall\\Studio\\Topo_REPO\\TopoRhinoPlugin\\TopoRhinoPlugin\\TopoRhinoPlugin.csproj",
-        "packagesPath": "C:\\Users\\jackm\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jackm\\Documents\\Cornell 22-23\\Fall\\Studio\\Topo_REPO\\TopoRhinoPlugin\\TopoRhinoPlugin\\obj\\",
+        "projectPath": "C:\\Users\\LabUser\\Documents\\jmo97\\Topo_REPO\\TopoRhinoPlugin\\TopoRhinoPlugin\\TopoRhinoPlugin.csproj",
+        "packagesPath": "C:\\Users\\LabUser\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LabUser\\Documents\\jmo97\\Topo_REPO\\TopoRhinoPlugin\\TopoRhinoPlugin\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jackm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LabUser\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -46,7 +50,7 @@
               "version": "[7.13.21348.13001, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

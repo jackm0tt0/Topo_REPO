@@ -19,6 +19,15 @@ namespace TopoRhinoPlugin
             get { return _window; }
             set { _window = value; }
         }
+
+        private Rhino.Geometry.GeometryBase _geom;
+
+        public Rhino.Geometry.GeometryBase geom
+        {
+            get { return _geom; }
+            set { _geom = value; }
+        }
+
         public TopoWindow()
         {
             this.build_window();
@@ -27,15 +36,39 @@ namespace TopoRhinoPlugin
         private void build_window()
         {
             Form window = new Form();
+            // Main VStack
             Eto.Forms.StackLayout vstack = new Eto.Forms.StackLayout();
+            
+            // First Item
             Eto.Forms.Button b1 = new Eto.Forms.Button();
             b1.Text = "click me";
             b1.Click += (sender, e) =>
             {
                 RhinoApp.WriteLine("I clicked a button");
+                b1.BackgroundColor = Eto.Drawing.Color.FromRgb(0xff10ff);
+                b1.Image = Eto.Drawing.Bitmap.FromResource("TopoRhinoPlugin.EmbeddedResources.smile.bmp");
             };
             vstack.Items.Add(b1);
+
+            Eto.Forms.Slider slider_1 = new Eto.Forms.Slider();
+            slider_1.MinValue = 0;
+            slider_1.MaxValue = 100;
+            slider_1.BackgroundColor = Eto.Drawing.Color.FromRgb(0xffff50);
+
+            Eto.Forms.Label slider_1_value = new Eto.Forms.Label();
+            slider_1_value.Text = "Value: 0";
+            slider_1.ValueChanged += (sender, e) =>
+            {
+                slider_1_value.Text = "Value: " + slider_1.Value.ToString();
+            };
+
+
+            vstack.Items.Add(slider_1);
+            vstack.Items.Add(slider_1_value);
+
+
             window.Content = vstack;
+
 
             window.Closed += (sender, e) =>
             {
