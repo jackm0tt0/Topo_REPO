@@ -28,9 +28,16 @@ namespace TopoRhinoPlugin
             set { _geom = value; }
         }
 
+        private event EventHandler event_update;
+
         public TopoWindow()
         {
             this.build_window();
+        }
+
+        public void update()
+        {
+            event_update?.Invoke(this, EventArgs.Empty);
         }
 
         private void build_window()
@@ -38,37 +45,62 @@ namespace TopoRhinoPlugin
             Form window = new Form();
             // Main VStack
             Eto.Forms.StackLayout vstack = new Eto.Forms.StackLayout();
-            
-            // First Item
-            Eto.Forms.Button b1 = new Eto.Forms.Button();
-            b1.Text = "click me";
-            b1.Click += (sender, e) =>
-            {
-                RhinoApp.WriteLine("I clicked a button");
-                b1.BackgroundColor = Eto.Drawing.Color.FromRgb(0xff10ff);
-                b1.Image = Eto.Drawing.Bitmap.FromResource("TopoRhinoPlugin.EmbeddedResources.smile.bmp");
-            };
-            vstack.Items.Add(b1);
 
-            Eto.Forms.Slider slider_1 = new Eto.Forms.Slider();
-            slider_1.MinValue = 0;
-            slider_1.MaxValue = 100;
-            slider_1.BackgroundColor = Eto.Drawing.Color.FromRgb(0xffff50);
 
-            Eto.Forms.Label slider_1_value = new Eto.Forms.Label();
-            slider_1_value.Text = "Value: 0";
-            slider_1.ValueChanged += (sender, e) =>
+            Eto.Forms.Label l_object = new Eto.Forms.Label();
+            l_object.Text = "Object: ";
+            vstack.Items.Add(l_object);
+            this.event_update += (sender, e) =>
             {
-                slider_1_value.Text = "Value: " + slider_1.Value.ToString();
+                l_object.Text = "Object: " + this.geom.ToString();
             };
 
 
-            vstack.Items.Add(slider_1);
-            vstack.Items.Add(slider_1_value);
+            Eto.Forms.Label l_guid = new Eto.Forms.Label();
+            l_guid.Text = "GUID: ";
+            vstack.Items.Add(l_guid);
+            this.event_update += (sender, e) =>
+            {
+                l_guid.Text = "Object: " + this.geom.ToString();
+            };
+
+            Eto.Forms.Label l_type = new Eto.Forms.Label();
+            l_type.Text = "Type: ";
+            vstack.Items.Add(l_type);
+            this.event_update += (sender, e) =>
+            {
+                l_type.Text = "Object: " + this.geom.GetType().ToString();
+            };
+
+            //// First Item
+            //Eto.Forms.Button b1 = new Eto.Forms.Button();
+            //b1.Text = "click me";
+            //b1.Click += (sender, e) =>
+            //{
+            //    RhinoApp.WriteLine("I clicked a button");
+            //    b1.BackgroundColor = Eto.Drawing.Color.FromRgb(0xff10ff);
+            //    b1.Image = Eto.Drawing.Bitmap.FromResource("TopoRhinoPlugin.EmbeddedResources.smile.bmp");
+            //};
+            //vstack.Items.Add(b1);
+
+            //Eto.Forms.Slider slider_1 = new Eto.Forms.Slider();
+            //slider_1.MinValue = 0;
+            //slider_1.MaxValue = 100;
+            //slider_1.BackgroundColor = Eto.Drawing.Color.FromRgb(0xffff50);
+
+            //Eto.Forms.Label slider_1_value = new Eto.Forms.Label();
+            //slider_1_value.Text = "Value: 0";
+            //slider_1.ValueChanged += (sender, e) =>
+            //{
+            //    slider_1_value.Text = "Value: " + slider_1.Value.ToString();
+            //};
+
+
+            //vstack.Items.Add(slider_1);
+            //vstack.Items.Add(slider_1_value);
 
 
             window.Content = vstack;
-
 
             window.Closed += (sender, e) =>
             {
