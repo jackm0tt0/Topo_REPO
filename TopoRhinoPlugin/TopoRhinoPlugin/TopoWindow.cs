@@ -20,12 +20,20 @@ namespace TopoRhinoPlugin
             set { _window = value; }
         }
 
-        private Rhino.Geometry.GeometryBase _geom;
+        private Rhino.DocObjects.ObjRef _obj_ref;
 
-        public Rhino.Geometry.GeometryBase geom
+        public Rhino.DocObjects.ObjRef obj_ref
         {
-            get { return _geom; }
-            set { _geom = value; }
+            get { return _obj_ref; }
+            set { _obj_ref = value; }
+        }
+
+        private DoubleClickMenu _doubleclickmenu;
+
+        public DoubleClickMenu doubleclickmenu
+        {
+            get { return _doubleclickmenu; }
+            set { _doubleclickmenu = value; }
         }
 
         private event EventHandler event_update;
@@ -33,6 +41,12 @@ namespace TopoRhinoPlugin
         public TopoWindow()
         {
             this.build_window();
+            this.doubleclickmenu = new DoubleClickMenu();
+
+            this.window.MouseDoubleClick += (sender, e) =>
+            {
+                this.doubleclickmenu.toggle();
+            };
         }
 
         public void update()
@@ -43,34 +57,86 @@ namespace TopoRhinoPlugin
         private void build_window()
         {
             Form window = new Form();
-            // Main VStack
-            Eto.Forms.StackLayout vstack = new Eto.Forms.StackLayout();
+            window.Icon = Eto.Drawing.Icon.FromResource("TopoRhinoPlugin.EmbeddedResources.smile.bmp");
+            window.Title = "Manatee";
+            window.Padding = 10;
+            window.Width = 800;
+            window.Height = 800;
 
+            build_menu(window);
 
-            Eto.Forms.Label l_object = new Eto.Forms.Label();
-            l_object.Text = "Object: ";
-            vstack.Items.Add(l_object);
-            this.event_update += (sender, e) =>
+            build_header(window);
+
+            build_body(window);
+
+            window.Closed += (sender, e) =>
             {
-                l_object.Text = "Object: " + this.geom.ToString();
+                RhinoApp.WriteLine("window was closed");
+                this.window = null;
             };
 
+            this.window = window;
+        }
 
-            Eto.Forms.Label l_guid = new Eto.Forms.Label();
-            l_guid.Text = "GUID: ";
-            vstack.Items.Add(l_guid);
-            this.event_update += (sender, e) =>
+        private void build_menu(Eto.Forms.Window window)
+        {
+            Eto.Forms.MenuBar mainmenu = new Eto.Forms.MenuBar();
+            window.Menu = mainmenu;
+
+            Eto.Forms.ContextMenu sub_file = new Eto.Forms.ContextMenu();
+            Eto.Forms.MenuItem menu_file = new Eto.Forms.ButtonMenuItem();
+            menu_file.Text = "File";
+            menu_file.Click += (sender, e) =>
             {
-                l_guid.Text = "Object: " + this.geom.ToString();
+                RhinoApp.WriteLine("You Clicked File");
+                sub_file.Show();
             };
+
+            Eto.Forms.MenuItem file_e1 = new Eto.Forms.ButtonMenuItem();
+            file_e1.Text = "element_1";
+            sub_file.Items.Add(file_e1);
+
+            window.Menu.Items.Add(menu_file);
+
+            Eto.Forms.MenuItem menu_edit = new Eto.Forms.ButtonMenuItem();
+            menu_edit.Text = "Edit";
+            menu_edit.Click += (sender, e) =>
+            {
+                RhinoApp.WriteLine("You Clicked Edit");
+            };
+            window.Menu.Items.Add(menu_edit);
+        }
+
+        private void build_header(Eto.Forms.Window window)
+        {
+            return;
+        }
+
+        private void build_body(Eto.Forms.Window window)
+        {
+            Eto.Forms.StackLayout mainstack = new Eto.Forms.StackLayout();
 
             Eto.Forms.Label l_type = new Eto.Forms.Label();
             l_type.Text = "Type: ";
-            vstack.Items.Add(l_type);
+            mainstack.Items.Add(l_type);
             this.event_update += (sender, e) =>
             {
-                l_type.Text = "Object: " + this.geom.GetType().ToString();
+                if (this.obj_ref == null) { 
+                    l_type.Text = "Type: ";
+                    return;
+                }
+                else if (this.obj_ref.GeometryComponentIndex.Index == -1)
+                {
+                    l_type.Text = "Type: " + this.obj_ref.Geometry().GetType().ToString();
+                }
+                else
+                {
+                    l_type.Text = "Type: " + this.obj_ref.GeometryComponentIndex.ComponentIndexType.ToString();
+                }
+                
             };
+
+            window.Content = mainstack;
 
             //// First Item
             //Eto.Forms.Button b1 = new Eto.Forms.Button();
@@ -98,17 +164,6 @@ namespace TopoRhinoPlugin
 
             //vstack.Items.Add(slider_1);
             //vstack.Items.Add(slider_1_value);
-
-
-            window.Content = vstack;
-
-            window.Closed += (sender, e) =>
-            {
-                RhinoApp.WriteLine("window was closed");
-                this.window = null;
-            };
-
-            this.window =  window;
         }
 
         public void toggle()
@@ -117,5 +172,6 @@ namespace TopoRhinoPlugin
             if (this.window.Visible) { this.window.BringToFront(); }
             if (! this.window.Visible) { this.window.Show(); }
         }
+
     }
 }
